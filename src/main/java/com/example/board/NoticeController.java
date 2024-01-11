@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 public class NoticeController {
     private final NoticeService noticeService;
     private final CommentService commentService;
-    String[] boardName = {"자유 게시판", "개발 게시판", "일상 게시판", "사건사고 게시판"};
-    String[] boardType = {"free", "develop", "daily", "event"};
 
     @GetMapping("/home")
     public String home() {
