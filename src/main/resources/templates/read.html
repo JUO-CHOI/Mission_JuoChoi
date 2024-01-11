@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <title>Read</title>
+</head>
+<body>
+<h1>[[${notice.title}]]</h1>
+<p>[[${notice.text}]]</p><br>
+<a th:href="@{/update-view/{id} (id=${notice.id})}">Update</a>
+<form th:action="@{/delete/{id}(id=${notice.id})}" method="post">
+  <label>
+    Password: <input type="text" name="notice_password">
+  </label>
+  <input type="submit" value="Notice Delete">
+</form>
+<h3>Comment</h3>
+<div th:if="${comments.isEmpty()}">
+  <p>No Comment Here...</p>
+</div>
+<div th:unless="${comments.isEmpty()}" th:each="comment: ${comments}">
+  [[${comment.text}]]
+  <form th:action="@{/{id}/delete-comment (id=${comment.id})}" method="post">
+    <label>
+      Password: <input type="text" name="comment_password">
+    </label>
+    <input type="submit" value="Comment Delete">
+  </form><br>
+</div>
+<h3>Add Comment</h3>
+<form th:action="@{/{id}/add-comment (id=${notice.id})}" method="post">
+  <div>
+    <label>
+      Comment : <input type="text" name="comment_text">
+    </label>
+  </div>
+  <div>
+    <label>
+      Password : <input type="text" name="comment_password">
+    </label>
+  </div>
+  <div>
+    <input type="submit" value="Add Comment">
+  </div>
+</form><br>
+<a href="/home">Home</a>
+</body>
+</html>

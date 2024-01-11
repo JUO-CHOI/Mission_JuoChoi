@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+</head>
+<body>
+<h1>게시글 수정</h1>
+<form th:action="@{/update/{id}(id=${notice.id})}" method="post">
+    <div class="mb3">
+        <label>
+            <select name="type" required="required">
+                <option value="free">자유 게시판</option>
+                <option value="develop">개발 게시판</option>
+                <option value="daily">일상 게시판</option>
+                <option value="event">사건사고 게시판</option>
+            </select>
+        </label>
+    </div>
+    <label>
+        게시글 제목 : <input type="text" name="title" maxlength="20" th:value="${notice.title}">
+    </label>
+    <div>
+        <p>게시글 내용</p>
+        <label>
+            <textarea name="text" cols="30" rows="10" maxlength="1000" th:value="${notice.text}" th:text="${notice.text}"></textarea>
+        </label>
+    </div>
+    <div>
+        <label>
+            비밀번호 : <input type="text" name="password">
+        </label>
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
+<a href="/home">Back</a>
+</body>
+</html>

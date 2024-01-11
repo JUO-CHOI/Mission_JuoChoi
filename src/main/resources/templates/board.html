@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h2>[[${boardName}]]</h2>
+
+<div th:if="${notices.isEmpty()}" class="mb3">
+  <p>게시판에 게시글이 없습니다.</p>
+</div>
+<div th:unless="${notices.isEmpty()}" th:each="notice: ${notices}">
+  <a th:href="@{/read/{id} (id=${notice.id})}"><p>[[${notice.title}]]</p></a>
+</div>
+<a href="/home">Back</a>
+</body>
+</html>
